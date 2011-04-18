@@ -1,35 +1,48 @@
+<!DOCTYPE html> 
 <html>
-    <head>
+    <head>    
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a2/jquery.mobile-1.0a2.min.css" />
+        <script src="http://code.jquery.com/jquery-1.4.3.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.0a2/jquery.mobile-1.0a2.min.js"></script>
         <link type="text/css" rel="stylesheet" href="/static/css/main.css" />
     </head>
     <body>
-        <h1>Mileage Demo App</h1>
-        <h2>Recent Information</h2>
-        
-        <ul>
-        {% for fillup in fillups %}
-            <li>
-                <h3>{{ fillup.date }}</h3>
-                <ul>
-                    <li>Miles Driven:{{ fillup.miles }}</li>
-                    <li>Gallons:{{ fillup.gal}}</li>
-                </ul>
-            </li>
-        {% endfor %}
-        </ul>
     
-        <div>
-            <h3>Total MPG:{{ user_mpg_total }}<h3>
+        <div data-role="page" id="home">
+            <div data-role="header" data-backbtn="false">
+                <h1>Mileage Demo App</h1>
+            </div>      
+            <div data-role="content">
+                <div>
+                    <h3>Total MPG: {{ user_mpg_total }}<h3>
+                </div>
+                <ul data-role="listview" data-inset="true">
+                <li data-role="list-divider">10 Most Recent Entries</li>
+                {% for fillup in fillups %}
+                    <li>
+                        <p style="font-weight:bold;padding-top:8px;">{{ fillup.date|date:"M j, H:i" }}<p>
+                        <p class="ui-li-desc">Miles Driven: {{ fillup.miles }}</p>
+                        <p class="ui-li-desc">Gallons: {{ fillup.gal}}</p>
+                    </li>
+                {% endfor %}
+                </ul>
+                <a href="#addnewinfo" data-rel="dialog" data-role="button"> Add New information</a>
+                <a rel="external" data-role="button" href="{{ url }}">{{ url_linktext }}</a>
+            </div>
         </div>
         
-        <form action="/newfillup" method="post">
-            <div>Add New Information</div>
-            <div>Miles Driven:<input name="miles"></input></div>
-            <div>Gallons used:<input name="gal" ></input></div>
-            <div><input type="submit" value="Submit"></div>
-        </form>
-        
-        <a href="{{ url }}">{{ url_linktext }}</a>
+        <div data-role="dialog" id="addnewinfo">
+            <div data-role="header">
+                <h1>Add New Information</h1>
+            </div>
+             <div data-role="content"> 
+                <form action="/newfillup" method="post">
+                    <label for="miles">Miles Driven:</label><input id="miles" name="miles"></input>
+                    <label for="gal">Gallons used:</label><input id="gal" name="gal"></input>
+                   <input type="submit" value="Submit">
+                </form>
+             </div>
+        </div>
         
     </body>
 </html>
