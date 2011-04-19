@@ -30,7 +30,7 @@ class MainPage(webapp.RequestHandler):
       user_mpg_total = ""
     else:
       user_MPG = totalMPG_query.fetch(1)[0]
-      user_mpg_total = user_MPG.totalMiles / user_MPG.totalGal
+      user_mpg_total = "%.2f" % (user_MPG.totalMiles / user_MPG.totalGal)
 
     if users.get_current_user():
       url = users.create_logout_url(self.request.uri)
