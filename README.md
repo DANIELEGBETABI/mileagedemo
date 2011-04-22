@@ -13,3 +13,5 @@ Run Development Server:
 
 Deploy:
     python google_appengine/appcfg.py update mileagedemo
+
+
