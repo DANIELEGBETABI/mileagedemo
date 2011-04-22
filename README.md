@@ -1,17 +1,15 @@
-mileage demo app
+Mileage Demo Application
 =============
 
-Demo application using Google App engine and jQuery mobile
+Demo application using Google App Engine and jQuery mobile
 
 
-Development Server
+Commands
 -------
 
-    `python google_appengine/appcfg.py update mileagedemo`
+Run Development Server:
+    python google_appengine/appcfg.py update mileagedemo
 
-
-Deploy
--------
-
-    `python google_appengine/dev_appserver.py mileagedemo`
+Deploy:
+    python google_appengine/dev_appserver.py mileagedemo
 
